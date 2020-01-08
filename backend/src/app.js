@@ -3,6 +3,7 @@ import express from "express";
 class App {
   constructor() {
     this.server = express();
+    this.middleware();
   }
 
   middleware() {
