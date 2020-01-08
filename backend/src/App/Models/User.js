@@ -1,7 +1,7 @@
 import Sequelize, { Model } from "sequelize";
 
 class User extends Model {
-  static init(connection) {
+  static init(sequelize) {
     super.init(
       {
         name: Sequelize.STRING,
@@ -9,9 +9,15 @@ class User extends Model {
         password_hash: Sequelize.STRING,
         image_path: Sequelize.STRING
       },
-      { connection }
+      {
+        sequelize,
+        define: {
+          singular: "user",
+          plural: "users"
+        }
+      }
     );
   }
 }
 
-export default new User();
+export default User;
