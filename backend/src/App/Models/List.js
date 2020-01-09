@@ -10,6 +10,10 @@ class List extends Model {
       { sequelize }
     );
   }
+
+  static associate(models) {
+    this.belongsTo(models.User);
+  }
 }
 
 export default List;
