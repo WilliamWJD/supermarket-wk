@@ -7,7 +7,7 @@ module.exports = {
         autoIncrement: true,
         allowNull: false
       },
-      id_list: {
+      list_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "lists", key: "id" }

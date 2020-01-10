@@ -4,16 +4,20 @@ class List extends Model {
   static init(sequelize) {
     super.init(
       {
-        id_user: Sequelize.INTEGER,
+        user_id: Sequelize.INTEGER,
         status: Sequelize.BOOLEAN
       },
-      { sequelize }
+      {
+        sequelize,
+        singular: "list",
+        plurar: "lists"
+      }
     );
   }
 
   static associate(models) {
-    this.belongsTo(models.User);
-    this.hasMany(models.Detail);
+    this.belongsTo(models.User, { foreignKey: "user_id" });
+    // this.hasMany(models.Detail);
   }
 }
 

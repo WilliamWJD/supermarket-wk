@@ -7,15 +7,14 @@ module.exports = {
         autoIncrement: true,
         allowNull: false
       },
-      id_user: {
+      user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "users", key: "id" }
       },
       status: {
-        type: Sequelize.INTEGER,
-        default: false,
-        allowNull: false
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       created_at: {
         type: Sequelize.DATE,
