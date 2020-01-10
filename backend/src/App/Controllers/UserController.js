@@ -1,7 +1,49 @@
+import { Op } from "sequelize";
 import * as Yup from "yup";
 import User from "../Models/User";
 
 class UserController {
+  async index(req, res) {
+    const { name, email, sort } = req.query;
+
+    const page = req.query.page || 1;
+    const limit = req.query.limit || 25;
+
+    let order = {};
+    let where = {};
+
+    if (name) {
+      where = {
+        ...where,
+        name: {
+          [Op.iLike]: name
+        }
+      };
+    }
+
+    if (email) {
+      where = {
+        ...where,
+        email: {
+          [Op.iLike]: email
+        }
+      };
+    }
+
+    if (sort) {
+      order = sort.split(",").map(item => item.split(":"));
+    }
+
+    const user = await User.findAll({
+      attributes: { exclude: ["password", "password_hash"] },
+      where,
+      order,
+      limit,
+      offset: limit * page - limit
+    });
+    return res.json(user);
+  }
+
   async create(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
