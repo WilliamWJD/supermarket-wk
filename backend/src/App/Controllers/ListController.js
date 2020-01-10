@@ -52,6 +52,15 @@ class ListController {
     await list.update(req.body);
     return res.status(201).json(list);
   }
+
+  async destroy(req, res) {
+    const list = await List.findByPk(req.params.list_id);
+    if (!list) {
+      return res.status(404).json({ error: "List not found" });
+    }
+    await list.destroy();
+    return res.status(201).json({ message: "List exclused success" });
+  }
 }
 
 export default new ListController();
