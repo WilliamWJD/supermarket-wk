@@ -12,6 +12,7 @@ routes.put("/user/:id", UserController.update);
 routes.delete("/user/:id", UserController.destroy);
 
 routes.get("/list", ListController.index);
-routes.post("/list/:user_id", ListController.create);
+routes.post("/user/:user_id/list", ListController.create);
+routes.put("/list/:list_id", ListController.update);
 
 export default routes;

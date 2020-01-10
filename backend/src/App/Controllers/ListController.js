@@ -5,24 +5,24 @@ import User from "../Models/User";
 
 class ListController {
   async index(req, res) {
-    // const { status } = req.query;
+    const { status } = req.query;
 
     const page = req.query.page || 1;
     const limit = req.query.limit || 25;
 
-    // let where = {};
+    let where = {};
 
-    // if (status) {
-    //   where = {
-    //     ...where,
-    //     status: {
-    //       status
-    //     }
-    //   };
-    // }
+    if (status) {
+      where = {
+        ...where,
+        status: {
+          status
+        }
+      };
+    }
 
     const list = await List.findAll({
-      // where,
+      where,
       include: [
         {
           model: User,
@@ -41,6 +41,15 @@ class ListController {
     const list = await List.create({
       user_id: req.params.user_id
     });
+    return res.status(201).json(list);
+  }
+
+  async update(req, res) {
+    const list = await List.findByPk(req.params.list_id);
+    if (!list) {
+      return res.status(404).json({ error: "List not found" });
+    }
+    await list.update(req.body);
     return res.status(201).json(list);
   }
 }
