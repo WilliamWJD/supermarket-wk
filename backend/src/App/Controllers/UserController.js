@@ -4,12 +4,11 @@ import User from "../Models/User";
 
 class UserController {
   async index(req, res) {
-    const { name, email, sort } = req.query;
+    const { name, email } = req.query;
 
     const page = req.query.page || 1;
     const limit = req.query.limit || 25;
 
-    let order = {};
     let where = {};
 
     if (name) {
@@ -30,14 +29,9 @@ class UserController {
       };
     }
 
-    if (sort) {
-      order = sort.split(",").map(item => item.split(":"));
-    }
-
     const user = await User.findAll({
       attributes: { exclude: ["password", "password_hash"] },
       where,
-      order,
       limit,
       offset: limit * page - limit
     });
@@ -131,6 +125,15 @@ class UserController {
     return res
       .status(201)
       .json({ id, name, email, image_path, createdAt, updatedAt });
+  }
+
+  async destroy(req, res) {
+    const user = await User.findByPk(req.params.id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    await user.destroy();
+    return res.json({ message: "Excluido com sucesso!" });
   }
 }
 
