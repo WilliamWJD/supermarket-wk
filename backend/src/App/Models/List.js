@@ -13,6 +13,7 @@ class List extends Model {
 
   static associate(models) {
     this.belongsTo(models.User);
+    this.hasMany(models.Detail);
   }
 }
 

@@ -12,6 +12,10 @@ class Detail extends Model {
       { sequelize }
     );
   }
+
+  static associate(models) {
+    this.belongsTo(models.List);
+  }
 }
 
 export default Detail;
