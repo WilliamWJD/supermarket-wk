@@ -44,6 +44,14 @@ class UserController {
     return res.json(user);
   }
 
+  async show(req, res) {
+    const user = await User.findByPk(req.params.id);
+    if (!user) {
+      return res.status(404).json({ error: "Resource not found" });
+    }
+    return res.json(user);
+  }
+
   async create(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
