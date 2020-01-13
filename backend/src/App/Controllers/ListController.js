@@ -2,6 +2,7 @@
 // import * as Yup from "yup";
 import List from "../Models/List";
 import User from "../Models/User";
+import Detail from "../Models/Detail";
 
 class ListController {
   async index(req, res) {
@@ -15,9 +16,7 @@ class ListController {
     if (status) {
       where = {
         ...where,
-        status: {
-          status
-        }
+        status
       };
     }
 
@@ -28,6 +27,10 @@ class ListController {
           model: User,
           attributes: ["id", "name"],
           required: true
+        },
+        {
+          model: Detail,
+          attributes: ["description", "quantity"]
         }
       ],
       limit,
