@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import User from "../Models/User";
 
-require("dotenv").config();
+import authConfig from "../../config/auth";
 
 class SessionsController {
   async create(req, res) {
@@ -27,8 +27,8 @@ class SessionsController {
         name,
         email
       },
-      token: jwt.sign({ id }, process.env.SECRET_KEY, {
-        expiresIn: "7d"
+      token: jwt.sign({ id }, authConfig.secret, {
+        expiresIn: authConfig.expireIn
       })
     });
   }

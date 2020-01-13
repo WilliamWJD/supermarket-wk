@@ -1,5 +1,7 @@
 import { Router } from "express";
 
+import auth from "./App/middlewares/auth";
+
 import UserController from "./App/Controllers/UserController";
 import ListController from "./App/Controllers/ListController";
 import DetailController from "./App/Controllers/DetailController";
@@ -9,6 +11,9 @@ const routes = new Router();
 
 // SESSIONS
 routes.post("/sessions", SessionsController.create);
+
+// CONTROLA O ACESSO DESSE PONTO
+routes.use(auth);
 
 // USERS
 routes.get("/user", UserController.index);
