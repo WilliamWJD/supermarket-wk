@@ -19,5 +19,13 @@ routes.delete("/list/:list_id", ListController.destroy);
 
 routes.get("/user/:user_id/list/:list_id/detail", DetailController.index);
 routes.post("/user/:user_id/list/:list_id/detail", DetailController.create);
+routes.put(
+  "/user/:user_id/list/:list_id/detail/:detail_id",
+  DetailController.update
+);
+routes.delete(
+  "/user/:user_id/list/:list_id/detail/:detail_id",
+  DetailController.destroy
+);
 
 export default routes;

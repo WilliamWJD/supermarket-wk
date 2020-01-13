@@ -53,6 +53,42 @@ class DetailController {
 
     return res.status(201).json(detail);
   }
+
+  async update(req, res) {
+    const schema = Yup.object().shape({
+      description: Yup.string().required(),
+      quantity: Yup.number()
+        .integer()
+        .required(),
+      status: Yup.boolean().required()
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: "Error on validate schema" });
+    }
+
+    const detail = await Detail.findByPk(req.params.detail_id);
+
+    if (!detail) {
+      return res.status(400).json({ error: "Detail not found" });
+    }
+
+    await detail.update(req.body);
+
+    return res.status(200).json(detail);
+  }
+
+  async destroy(req, res) {
+    const detail = await Detail.findByPk(req.params.detail_id);
+
+    if (!detail) {
+      return res.status(400).json({ error: "Detail not found" });
+    }
+
+    await detail.destroy();
+
+    return res.status(200).json({ message: "Detail deleted succefull" });
+  }
 }
 
 export default new DetailController();

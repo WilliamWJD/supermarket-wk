@@ -30,7 +30,7 @@ class ListController {
         },
         {
           model: Detail,
-          attributes: ["description", "quantity"]
+          attributes: ["description", "quantity", "status"]
         }
       ],
       limit,
