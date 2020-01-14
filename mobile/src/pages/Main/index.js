@@ -1,8 +1,8 @@
 import React from 'react'
-import { View, Text } from 'react-native'
 
 import Header from '../../components/Header'
 import SubHeader from '../../components/SubHeader'
+import List from '../../components/List'
 
 import {Container} from './style'
 
@@ -11,6 +11,7 @@ const Main = () => {
         <Container>
             <Header/>
             <SubHeader/>
+            <List/>
         </Container>
     )
 }
