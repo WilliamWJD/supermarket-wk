@@ -20,7 +20,10 @@ export const FilterMonth=styled.TouchableOpacity `
     margin: 0px 10px 0px 10px;
     height:40px;
     border-radius:5px;
-    /* padding:3px; */
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    padding: 0px 5px 0px 5px;
 `;
 
 export const TextFilter=styled.TextInput `

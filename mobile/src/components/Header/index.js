@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { Text } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import Profile from '../../assets/profile.jpg'
 
@@ -11,9 +12,10 @@ const Header = () => {
            <Perfil source={Profile}/>
            <FilterMonth>
                <TextFilter placeholder="Selecione o mês"/>
+               <Icon name="date-range" size={25} color="#D2D8D8"/>
            </FilterMonth>
            <AddButton>
-               <Text>+</Text>
+               <Icon name="add" size={25} color="#fff"/>
            </AddButton>
         </Container>
     )
