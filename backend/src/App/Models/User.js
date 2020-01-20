@@ -33,6 +33,9 @@ class User extends Model {
 
   static associate(models) {
     this.hasMany(models.List);
+    this.belongsTo(models.File, {
+      foreignKey: "file_id"
+    });
   }
 }
 
