@@ -1,4 +1,6 @@
 import { Router } from "express";
+import multer from "multer";
+import multerConfig from "./config/multer";
 
 import auth from "./App/middlewares/auth";
 
@@ -6,8 +8,10 @@ import UserController from "./App/Controllers/UserController";
 import ListController from "./App/Controllers/ListController";
 import DetailController from "./App/Controllers/DetailController";
 import SessionsController from "./App/Controllers/SessionsController";
+import FileController from "./App/Controllers/FileController";
 
 const routes = new Router();
+const upload = multer(multerConfig);
 
 // SESSIONS
 routes.post("/sessions", SessionsController.create);
@@ -39,5 +43,8 @@ routes.delete(
   "/user/:user_id/list/:list_id/detail/:detail_id",
   DetailController.destroy
 );
+
+// UPLOAD DE ARQUIVOS
+routes.post("/files", upload.single("file"), FileController.store);
 
 export default routes;
