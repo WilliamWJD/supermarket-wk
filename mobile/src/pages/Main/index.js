@@ -1,11 +1,13 @@
 import React from 'react'
 
-import {View, Text, Button, TextInput} from 'react-native'
+import {View, Text} from 'react-native'
+
+import Header from '../../components/Header'
 
 export default function Main(){
     return(
         <View>
-            <Text>Main</Text>
+            <Header/>
         </View>
     )
 }
