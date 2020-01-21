@@ -6,12 +6,12 @@ import Header from '../../components/Header'
 import SubHeader from '../../components/SubHeader'
 import List from '../../components/List'
 
-export default function Main(){
+export default function Main({navigation}){
     return(
         <View>
             <Header/>
             <SubHeader/>
-            <List/>
+            <List navigation={navigation}/>
         </View>
     )
 }

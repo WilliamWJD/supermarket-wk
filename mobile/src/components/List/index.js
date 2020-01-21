@@ -1,13 +1,29 @@
-import React from 'react'
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native'
+import React, {useState, useEffect} from 'react'
+import {View, Text, StyleSheet, TouchableOpacity, Image, Animated, Button} from 'react-native'
 import {MaterialIcons} from '@expo/vector-icons'
 
 import Perfil from '../../../assets/perfil.jpg'
 
-export default function List(){
+// import ListItem from './ListItem'
+
+export default function List({navigation}){
+    const [offset]=useState(new Animated.Value(250))
+
+    useEffect(()=>{
+        Animated.spring(offset,{
+            toValue:0,
+            speed:5,
+            bounciness:20
+        }).start()
+    },[])
+
     return(
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.boxList}>
+        <Animated.View style={[styles.container,{
+            transform:[
+                {translateX:offset}
+            ]
+        }]}>            
+            <TouchableOpacity style={styles.boxList} onPress={()=>{navigation.navigate('Detail')}}>
                 <View style={styles.boxListStatus}></View>
                 <View style={styles.boxListConteudo}>
                     <View style={styles.boxListDescription}>
@@ -18,9 +34,7 @@ export default function List(){
                         <View style={styles.boxListDescriptionItem}>
                             <MaterialIcons name="shopping-cart" size={20} color="#7F8C8D"/>
                             <Text style={styles.boxListDescriptionText}>Carrinho: 3/7</Text>
-                        </View>
-                        
-                        {/* <Text style={styles.boxListDescriptionText}>Carrinho:  3/7</Text> */}
+                        </View>                     
                     </View>
                     <Image source={Perfil} style={styles.boxListImageUser}/>
                 </View>
@@ -38,8 +52,6 @@ export default function List(){
                             <MaterialIcons name="shopping-cart" size={20} color="#7F8C8D"/>
                             <Text style={styles.boxListDescriptionText}>Carrinho: 3/7</Text>
                         </View>
-                        
-                        {/* <Text style={styles.boxListDescriptionText}>Carrinho:  3/7</Text> */}
                     </View>
                     <Image source={Perfil} style={styles.boxListImageUser}/>
                 </View>
@@ -57,13 +69,11 @@ export default function List(){
                             <MaterialIcons name="shopping-cart" size={20} color="#7F8C8D"/>
                             <Text style={styles.boxListDescriptionText}>Carrinho: 3/7</Text>
                         </View>
-                        
-                        {/* <Text style={styles.boxListDescriptionText}>Carrinho:  3/7</Text> */}
                     </View>
                     <Image source={Perfil} style={styles.boxListImageUser}/>
                 </View>
             </TouchableOpacity>
-        </View>
+        </Animated.View>
     )
 }
 
