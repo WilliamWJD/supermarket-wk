@@ -4,12 +4,14 @@ import {View, Text} from 'react-native'
 
 import Header from '../../components/Header'
 import SubHeader from '../../components/SubHeader'
+import List from '../../components/List'
 
 export default function Main(){
     return(
         <View>
             <Header/>
             <SubHeader/>
+            <List/>
         </View>
     )
 }
