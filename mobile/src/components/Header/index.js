@@ -28,7 +28,7 @@ const styles=StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-between',
         marginTop:30,
-        alignItems:'center'
+        alignItems:'center',
     },
 
     imagePerfil:{
