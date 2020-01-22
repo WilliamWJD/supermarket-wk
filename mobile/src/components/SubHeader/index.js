@@ -4,13 +4,15 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 
 import {MaterialIcons} from '@expo/vector-icons'
 
-export default function SubHeader(){
+export default function SubHeader({title, filterStatus}){
     return(
         <View style={styles.container}>
-            <Text style={styles.title}>Shopping list</Text>
-            <TouchableOpacity style={styles.IconFilter}>
-                <MaterialIcons name="filter-list" size={27} color="#7F8C8D"/>
-            </TouchableOpacity>
+            <Text style={styles.title}>{title}</Text>
+            {filterStatus &&(
+                <TouchableOpacity style={styles.IconFilter}>
+                    <MaterialIcons name="filter-list" size={27} color="#7F8C8D"/>
+                </TouchableOpacity>
+            )}    
         </View>
     )
 }

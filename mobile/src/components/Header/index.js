@@ -6,14 +6,16 @@ import {MaterialIcons} from '@expo/vector-icons'
 
 import Perfil from '../../../assets/perfil.jpg'
 
-export default function Header(){
+export default function Header({disableFilter}){
     return(
         <View style={styles.container}>
             <Image source={Perfil} style={styles.imagePerfil}/>
-            <TouchableOpacity style={styles.searchMonth}>
-                <Text style={styles.searchMonthText}>Selecione o mês</Text>
-                <MaterialIcons name="date-range" size={23} color="#D2D8D8"/>
-            </TouchableOpacity>
+            {!disableFilter && (
+                <TouchableOpacity style={styles.searchMonth}>
+                    <Text style={styles.searchMonthText}>Selecione o mês</Text>
+                    <MaterialIcons name="date-range" size={23} color="#D2D8D8"/>
+                </TouchableOpacity>     
+            )}         
             <TouchableOpacity style={styles.buttonAdd}>
                <MaterialIcons name="add" size={23} color="#fff"/>
             </TouchableOpacity>

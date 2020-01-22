@@ -10,7 +10,7 @@ export default function Main({navigation}){
     return(
         <View>
             <Header/>
-            <SubHeader/>
+            <SubHeader title="Shopping list" filterStatus={true}/>
             <List navigation={navigation}/>
         </View>
     )

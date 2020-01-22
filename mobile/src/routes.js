@@ -8,7 +8,7 @@ const Routes=createAppContainer(
         Main,
         Detail
     },{
-        initialRouteName:'Main',
+        initialRouteName:'Detail',
         backBehavior:'order'
     })
 )
