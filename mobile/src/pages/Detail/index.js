@@ -1,9 +1,7 @@
 import React from 'react'
-
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 
 import Header from '../../components/Header'
-// import SubHeader from '../../components/SubHeader'
 import DetailList from '../../components/DetailList'
 
 export default function Detail(){
@@ -36,7 +34,6 @@ const styles=StyleSheet.create({
 
     buttonCheckoutText:{
         fontSize:17,
-        color:'#27AE60',
-       
+        color:'#27AE60',    
     }
 })

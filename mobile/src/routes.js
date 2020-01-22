@@ -2,13 +2,15 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 import Main from './pages/Main'
 import Detail from './pages/Detail'
+import Login from './pages/Login'
 
 const Routes=createAppContainer(
     createSwitchNavigator({
         Main,
-        Detail
+        Detail,
+        Login
     },{
-        initialRouteName:'Detail',
+        initialRouteName:'Login',
         backBehavior:'order'
     })
 )
