@@ -17,7 +17,7 @@ const upload = multer(multerConfig);
 routes.post("/sessions", SessionsController.create);
 
 // CONTROLA O ACESSO DESSE PONTO
-routes.use(auth);
+// routes.use(auth);
 
 // USERS
 routes.get("/user", UserController.index);
