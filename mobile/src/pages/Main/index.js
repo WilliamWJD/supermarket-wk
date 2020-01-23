@@ -1,36 +1,56 @@
-import React, {useState, useEffect} from 'react'
-import {View, Text, Alert} from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { View, Text, Alert } from 'react-native'
 import api from '../../services/api'
 
 import Header from '../../components/Header'
 import SubHeader from '../../components/SubHeader'
 import List from '../../components/List'
 
-export default function Main({navigation}){
-    const [list, setList]=useState([])
+export default function Main({ navigation }) {
+    const [list, setList] = useState([])
 
-    useEffect(()=>{
-        async function loadList(){
-            const response=await api.get('/list')
+    useEffect(() => {
+        async function loadList() {
+            const response = await api.get('/list')
             setList(response.data)
         }
         loadList()
-    },[])
+    }, [])
 
-    async function createList(){
+    async function save() {
         try {
-            const response=await api.post(`/user/1/list`)
+            const response = await api.post(`/user/1/list`)
             setList([...list, response.data])
         } catch (error) {
             Alert.alert(`${error.response.data.error}`)
-        } 
+        }
     }
 
-    return(
+    async function createList() {
+        Alert.alert(
+            'Lista',
+            'Deseja criar uma lista ?',
+            [
+                {
+                    text: 'Não',
+                    onPress: () => {},
+                    style: 'cancel',
+                },
+                {
+                    text: 'Sim', 
+                    onPress: () => {save()}
+                },
+            ],
+            { cancelable: false },
+        );
+
+    }
+
+    return (
         <View>
-            <Header createList={createList}/>
-            <SubHeader title="Shopping list" filterStatus={true}/>
-            <List navigation={navigation} list={list}/>
+            <Header createList={createList} />
+            <SubHeader title="Shopping list" filterStatus={true} />
+            <List navigation={navigation} list={list} />
         </View>
     )
 }

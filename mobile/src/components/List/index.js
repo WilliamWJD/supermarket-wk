@@ -29,7 +29,7 @@ export default function List({ navigation, list }) {
                     style={styles.boxList} 
                     onPress={() => { navigation.navigate('Detail') }}
                 >
-                    <View style={styles.boxListStatus}></View>
+                    <View style={item.status ? styles.boxListStatusActive : styles.boxListStatus}></View>
                     <View style={styles.boxListConteudo}>
                         <View style={styles.boxListDescription}>
                             <View style={styles.boxListDescriptionItem}>
@@ -66,6 +66,13 @@ const styles = StyleSheet.create({
 
     boxListStatus: {
         backgroundColor: '#E74C3C',
+        width: 20,
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10
+    },
+
+    boxListStatusActive: {
+        backgroundColor: '#27AE60',
         width: 20,
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10
