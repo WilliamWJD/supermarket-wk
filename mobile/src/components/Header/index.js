@@ -6,7 +6,7 @@ import {MaterialIcons} from '@expo/vector-icons'
 
 import Perfil from '../../../assets/perfil.jpg'
 
-export default function Header({disableFilter}){
+export default function Header({disableFilter, createList}){
     return(
         <View style={styles.container}>
             <Image source={Perfil} style={styles.imagePerfil}/>
@@ -16,7 +16,7 @@ export default function Header({disableFilter}){
                     <MaterialIcons name="date-range" size={23} color="#D2D8D8"/>
                 </TouchableOpacity>     
             )}         
-            <TouchableOpacity style={styles.buttonAdd}>
+            <TouchableOpacity style={styles.buttonAdd} onPress={createList}>
                <MaterialIcons name="add" size={23} color="#fff"/>
             </TouchableOpacity>
         </View>
