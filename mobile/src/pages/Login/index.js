@@ -4,11 +4,10 @@ import {View, Text, StyleSheet} from 'react-native'
 
 import FormLogin from '../../components/FormLogin'
 
-export default function Login(){
+export default function Login({navigation}){
     return(
         <View style={styles.container}>
-            <Text>Login</Text>
-            <FormLogin/>
+            <FormLogin navigation={navigation}/>
         </View>
     )
 }
