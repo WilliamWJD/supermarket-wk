@@ -4,11 +4,11 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 import Header from '../../components/Header'
 import DetailList from '../../components/DetailList'
 
-export default function Detail(){
+export default function Detail({navigation}){
     return(
         <View style={styles.container}>
             <Header disableFilter={true}/>
-            <DetailList/>
+            <DetailList navigation={navigation}/>
             <TouchableOpacity style={styles.buttonCheckout}>
                 <Text style={styles.buttonCheckoutText}>Check out</Text>
             </TouchableOpacity>

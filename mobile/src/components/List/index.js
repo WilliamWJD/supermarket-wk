@@ -1,33 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Image, Animated, FlatList, Button } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 
 import Perfil from '../../../assets/perfil.jpg'
 
-import ListItem from './ListItem'
-
-export default function List({ navigation, list }) {
-    const [offset] = useState(new Animated.Value(250))
-
-    useEffect(() => {
-        Animated.spring(offset, {
-            toValue: 0,
-            speed: 5,
-            bounciness: 20
-        }).start()
-    }, [])
-
+export default function List({ navigation, list, dialog, deleteList}) {
     return (
-        <Animated.View style={[styles.container, {
-            transform: [
-                { translateX: offset }
-            ]
-        }]}>        
+        <View style={styles.container}>        
             {list.map(item => (
                 <TouchableOpacity 
                     key={item.id}
                     style={styles.boxList} 
-                    onPress={() => { navigation.navigate('Detail') }}
+                    onPress={() => { navigation.navigate('Detail',{lista:item.id}) }}
+                    onLongPress={()=>{dialog('Aviso','Deseja excluir essa lista ?',deleteList(item.id))}}
                 >
                     <View style={item.status ? styles.boxListStatusActive : styles.boxListStatus}></View>
                     <View style={styles.boxListConteudo}>
@@ -45,7 +30,7 @@ export default function List({ navigation, list }) {
                     </View>
                 </TouchableOpacity>
             ))}
-        </Animated.View>
+        </View>
     )
 }
 

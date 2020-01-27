@@ -4,7 +4,7 @@ import List from "../Models/List";
 
 class DetailController {
   async index(req, res) {
-    const { list_id } = req.query;
+    const { list_id } = req.params;
 
     const page = req.query.page || 1;
     const limit = req.query.limit || 25;
@@ -20,13 +20,6 @@ class DetailController {
 
     const detail = await Detail.findAll({
       where,
-      include: [
-        {
-          model: List,
-          attributes: ["id", "status"],
-          required: true
-        }
-      ],
       limit,
       offset: limit * page - limit
     });

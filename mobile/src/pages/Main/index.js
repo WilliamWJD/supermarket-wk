@@ -33,12 +33,12 @@ export default function Main({ navigation }) {
             [
                 {
                     text: 'Não',
-                    onPress: () => {},
+                    onPress: () => { },
                     style: 'cancel',
                 },
                 {
-                    text: 'Sim', 
-                    onPress: () => {save()}
+                    text: 'Sim',
+                    onPress: () => { save() }
                 },
             ],
             { cancelable: false },
@@ -46,11 +46,41 @@ export default function Main({ navigation }) {
 
     }
 
+    async function deleteList(idList) {
+        // const response=await api.delete(`/list/${idList}`)
+        // loadList()
+        Alert.alert('teste')
+    }
+
+    function dialog(title,message,metod) {
+        Alert.alert(
+            `${title}`,
+            `${message}`,
+            [
+                {
+                    text: 'Não',
+                    onPress: () => { },
+                    style: 'cancel',
+                },
+                {
+                    text: 'Sim',
+                    onPress: () => { metod }
+                },
+            ],
+            { cancelable: false },
+        );
+    }
+
     return (
         <View>
             <Header createList={createList} />
             <SubHeader title="Shopping list" filterStatus={true} />
-            <List navigation={navigation} list={list} />
+            <List
+                navigation={navigation}
+                list={list}
+                deleteList={deleteList}
+                dialog={dialog}
+            />
         </View>
     )
 }
