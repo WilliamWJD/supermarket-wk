@@ -20,6 +20,9 @@ class DetailController {
 
     const detail = await Detail.findAll({
       where,
+      order:[
+        ['status','ASC']
+      ],
       limit,
       offset: limit * page - limit
     });

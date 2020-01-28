@@ -14,15 +14,24 @@ export default function DetailList({ navigation }) {
             setDetail(response.data)
         }
         loadDetail()
-    }, [])
+    }, [detail])
 
     async function onMarkedCar(item){
         const response=await api.put(`/user/1/list/${idList}/detail/${item.id}`,{
             description:item.description,
             quantity:item.quantity,
-            status:true
+            status:item.status ? false : true
         })
         Alert.alert('Item adicionado no carrinho')
+    }
+
+    async function onCheckinList(){
+        const response=await api.put(`/list/${idList}`,{
+            status:true
+        })
+        if(response.data){
+            navigation.navigate('Main')
+        }
     }
 
     return (
